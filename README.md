@@ -1,174 +1,231 @@
-# EduPredict: Big Data & Predictive Analytics Platform for Education
+# EduPredict
 
-EduPredict is an advanced educational analytics platform designed to help academic institutions monitor student performance, track engagement, and proactively identify learners who may require academic support. By consolidating student information, attendance logs, and learning-management system (LMS) activity into role-based dashboards, the platform provides predictive risk indicators, automated alerts, and comprehensive intervention tracking.
+### Big Data and Predictive Analytics Platform for Education
 
----
+EduPredict is an academic prototype for exploring how educational data can help institutions identify students who may benefit from earlier support. It brings student, attendance, course, and learning-engagement indicators into role-based dashboards, with risk estimates, alerts, cohort analytics, and intervention tracking.
 
-## 🚀 Project Overview & Institutional Context
+The project includes a React and TypeScript web application, a Python Flask API, optional MongoDB-backed operation, machine-learning examples, and scripts that demonstrate big-data processing workflows. The web app also includes interactive views for Hadoop, HDFS, MapReduce, and Impala concepts. Running these data services requires installing and configuring them separately; the included screens and scripts do not create a production Hadoop cluster automatically.
 
-Traditional academic monitoring systems often rely heavily on lagging indicators such as end-of-term examination failures or cumulative GPA drops. By the time these warning signs surface, at-risk students have frequently disengaged from coursework and campus life.
+> **Project status:** This is an academic demonstration and development project. It is not a validated clinical, financial, or institutional decision system. Predictive indicators are intended for exploration and should not be used as the sole basis for decisions about students.
 
-EduPredict addresses this challenge by combining Apache Hadoop (HDFS), parallel data processing via PySpark and MapReduce, real-time MPP SQL analytics through Apache Impala, operational NoSQL storage in MongoDB, and machine learning predictive models.
+## Contents
 
----
+- [Project goals](#project-goals)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [How the workflow fits together](#how-the-workflow-fits-together)
+- [Technology](#technology)
+- [Repository structure](#repository-structure)
+- [Requirements](#requirements)
+- [Getting started](#getting-started)
+- [Configuration](#configuration)
+- [API overview](#api-overview)
+- [Data and privacy](#data-and-privacy)
+- [Known limitations](#known-limitations)
+- [License](#license)
 
-## 🛠️ System Architecture & Technology Stack
+## Project goals
 
-EduPredict implements a robust 5-tier enterprise Big Data and Machine Learning architecture:
+Institutions often review student outcomes after grades fall or attendance declines. EduPredict demonstrates a workflow for combining academic results, attendance, and learning-platform engagement into a clearer view of student progress. The intent is to help staff explore patterns, prioritize follow-up, and record support actions earlier.
 
-* **Tier 1 - Data Ingestion Layer:** Batch CSV/Parquet/JSON uploader featuring real-time schema validation and automatic Student ID generation (`STU-2026-XXXX`), alongside real-time telemetry simulating LMS clickstreams and RFID lecture check-ins.
+The prototype focuses on:
 
+- Bringing sample student metrics into a shared application.
+- Summarizing performance and engagement through dashboards.
+- Surfacing risk estimates, trends, and anomaly indicators for review.
+- Supporting cohort filtering, CSV import, alerts, and advising workflows.
+- Demonstrating how batch analytics and machine-learning components could fit into a broader educational data platform.
 
-* **Tier 2 - Distributed Storage Layer:**
-* **Hadoop HDFS Warehouse (`/user/edupredict/warehouse/`):** Stores immutable historical datasets partitioned by semester using Snappy-compressed Parquet and ORC formats with 128 MB blocks and a 3x replication factor across 4 DataNodes.
+## Features
 
+### Role-based application views
 
-* **MongoDB Operational Database (`edupredict_db`):** Houses real-time operational collections, including `user_accounts`, `student_master_records`, `students`, `uploaded_datasets`, `alerts_notifications`, and `feedback_tickets`.
+- **Administrators:** Review campus and department summaries, student cohorts, alerts, and analytics.
+- **Faculty:** Review student performance and attendance, filter rosters, and record advising interventions.
+- **Students:** Review personal academic and attendance information, course progress, and support-request options.
+- **Analysts:** Explore predictive analytics and the big-data demonstration tools.
 
+Access to dashboard areas is organized by role. The repository includes demo accounts for local exploration; see [SETUP_GUIDE.md](SETUP_GUIDE.md). These accounts and credentials are for demonstration only.
 
+### Student analytics and support workflows
 
+- Student roster search, filtering, detail views, and CSV import/export workflows.
+- Academic metrics such as GPA, assessment results, and course progress.
+- Attendance metrics, absence trends, and an attendance-policy calculator.
+- Learning-engagement indicators such as weekly activity and assignment timeliness.
+- Risk scores, risk factors, predicted GPA, behavioral group labels, and anomaly indicators.
+- Alerts and support-intervention tracking.
+- A multi-filter analytics dashboard for exploring student cohorts.
 
-* **Tier 3 - Parallel Processing & Interactive Query Layer:** Distributed ETL jobs executed via PySpark/MapReduce alongside sub-second SQL analytics powered by the Apache Impala MPP engine.
+### Data engineering and analysis examples
 
+The repository also contains standalone examples for PySpark ETL, HDFS ingestion, Impala SQL, MongoDB seed data, Python machine-learning workflows, and R analysis. These components are intended for learning and demonstration. External systems such as Hadoop, Spark, and Impala must be installed and configured separately if you want to run the corresponding workflows.
 
-* **Tier 4 - Machine Learning & Statistical Modeling:** Ensemble dropout risk classifiers, K-Means behavioral clustering ($k=4$), and statistical anomaly detectors flagging attendance-to-grade divergences.
+## Screenshots
 
+### Login
 
-* **Tier 5 - Presentation & RBAC Visualization Layer:** Responsive React 19+ TypeScript and Tailwind CSS workstation supporting both Daylight Academic and Midnight themes.
+| Light theme | Dark theme |
+| --- | --- |
+| ![EduPredict login in light theme](docs/screenshots/Login-Light.png) | ![EduPredict login in dark theme](docs/screenshots/Login-Dark.png) |
 
+### Administrator dashboard
 
+| Light theme | Dark theme |
+| --- | --- |
+| ![Administrator dashboard in light theme](docs/screenshots/AdminDashboard-Light.png) | ![Administrator dashboard in dark theme](docs/screenshots/AdminDashboard-Dark.png) |
 
----
+### Other application views
 
-## 👥 Role-Based Access Control (RBAC) Workflows
+![Student portal](docs/screenshots/Student%20Portal.png)
 
-The platform provides dedicated, secure portals customized for four core institutional roles:
+![Analyst dashboard](docs/screenshots/Analyst%20Dashboard.png)
 
-* **Administrators (Deans / Provosts):** Monitor campus-wide retention KPIs, departmental GPA comparisons, high-priority intervention queues, and manage cohort directories and CSV imports.
+## How the workflow fits together
 
+1. **Load or review records.** The app provides sample data and a CSV import workflow for student cohort records.
+2. **Calculate or display indicators.** Application services and Python analytics components use academic, attendance, and engagement fields to produce summaries and predictive indicators.
+3. **Explore results by role.** Dashboards present the relevant cohort, student, alert, and analytics views to each user role.
+4. **Follow up.** Faculty and administrators can review alerts and record intervention activity in the application workflow.
+5. **Explore batch processing.** Separate scripts show example data ingestion, ETL, and SQL analysis patterns for big-data tooling.
 
-* **Faculty & Course Instructors:** Track course rosters, attendance rates, midterm exam averages, and log one-on-one counseling interventions.
+## Technology
 
+| Area | Technologies and components |
+| --- | --- |
+| Frontend | React 19, TypeScript, Vite, Tailwind CSS, Lucide icons |
+| Backend API | Python, Flask, Flask-CORS |
+| Database | MongoDB with PyMongo and MongoEngine; mock/fallback mode is also included |
+| Authentication support | bcrypt password hashing and JWT support in the Flask backend |
+| Machine learning | Python, scikit-learn, NumPy, pandas, Jupyter notebook, and R scripts |
+| Big-data examples | HDFS, PySpark, MapReduce, and Impala SQL scripts |
 
-* **Students:** Review personal GPA trajectories, course grades, and remaining safe absences under the 75% attendance policy threshold, as well as request academic advising.
+See `package.json` and `backend/requirements.txt` for dependency details.
 
-
-* **Big Data & ML Analysts:** Manage HDFS storage blocks, execute MapReduce/Spark batch jobs, run Impala SQL queries, and tune machine learning hyperparameter weights.
-
-
-
----
-
-## 📂 Repository Structure
+## Repository structure
 
 ```text
-backend/            Flask API, MongoDB models, seed data, and requirements
-big_data_pipeline/  HDFS, PySpark ETL, and Impala examples
-database/           MongoDB seed scripts and sample CSV datasets
-docs/screenshots/   Application screenshots for light and dark themes
-machine_learning/   Predictive analytics, anomaly detection, and R analysis
-src/                React and TypeScript web application source code
-README.md           Project overview
-SETUP_GUIDE.md      Detailed local installation and usage guide
-PROJECT_REPORT.md   Complete project report and technical documentation
-
+backend/             Flask API, MongoDB models, seed scripts, and Python requirements
+big_data_pipeline/   HDFS ingestion, PySpark ETL, and Impala SQL examples
+database/            MongoDB seed script and sample CSV datasets
+docs/screenshots/    Login, admin, student, and analyst screenshots
+machine_learning/    Dropout-risk, anomaly-detection, notebook, and R analysis files
+src/                 React and TypeScript application
+README.md            Project overview and local quick start
+SETUP_GUIDE.md       Detailed installation, database, and demo-account guide
+PROJECT_REPORT.md    Project report
 ```
 
----
+## Requirements
 
-## ⚙️ System Requirements
+For the web application and Flask backend:
 
-### Hardware Requirements
+- Node.js with npm.
+- Python 3.10 or newer; see `SETUP_GUIDE.md` for the project guide's supported versions.
+- MongoDB Community Server for database-backed local operation. The app also includes a fallback mode for demonstration when MongoDB is unavailable.
 
-* **Processor:** Intel Core i5 (4 Cores) minimum; Intel Core i7 (8 Cores) recommended.
+For the optional data-engineering examples, you may also need the matching external tools, such as Hadoop/HDFS, Apache Spark with PySpark, and Apache Impala. Jupyter, R, RStudio, or Tableau are only needed for their related analysis artifacts.
 
+## Getting started
 
-* **RAM:** 16 GB DDR4/DDR5 RAM.
+For complete prerequisites, MongoDB setup, startup behavior, manual steps, and demo-account information, read [SETUP_GUIDE.md](SETUP_GUIDE.md).
 
+### Windows quick start
 
-* **Storage:** 500 GB NVMe SSD.
+From the project root, run:
 
+```bat
+run_local.bat
+```
 
-* **OS:** 64-Bit Windows 10/11, macOS, or Linux.
+The script prepares the local backend environment and starts the API and frontend. Check the setup guide for the exact prerequisites and behavior.
 
+### macOS or Linux quick start
 
-
-### Software Stack
-
-* **Frontend:** React 19, TypeScript, Vite 6, Tailwind CSS, Lucide Icons.
-
-
-* **Backend:** Python 3.10+, Flask, Flask-CORS, PyMongo, PyJWT, bcrypt.
-
-
-* **Database:** MongoDB Community Server + MongoDB Compass + mongosh.
-
-
-* **Big Data & Analytics:** Apache Hadoop 3.3 (HDFS), Apache Spark (PySpark), Apache Impala, Jupyter Anaconda Notebook 3, RStudio (R 4.x), Tableau Desktop.
-
-
-
----
-
-## 🚀 Getting Started & Local Installation
-
-### Quick Start (Windows)
-
-Double-click `run_local.bat` in the project root directory to automatically launch the Python Flask and MongoDB backend on port 5000 alongside the React frontend on port 3000.
-
-### Quick Start (macOS or Linux)
+From the project root, run:
 
 ```bash
 chmod +x run_local.sh
 ./run_local.sh
-```[cite: 10]
-
-### Manual Setup via Terminal
-1. **Terminal 1 (Backend):**
-   ```bash
-   cd backend
-   python -m venv venv
-   source venv/bin/activate  # On Windows use: .\venv\Scripts\activate
-   pip install -r requirements.txt
-   python db_seed.py
-   python app.py
-   ```[cite: 10]
-2. **Terminal 2 (Frontend):**
-   ```bash
-   npm install
-   npm run dev
-   ```[cite: 10, 11]
-
-Open **`http://localhost:3000`** in your browser[cite: 11].
-
----
-
-## 🔑 Default Institutional Login Credentials
-
-| Role | Name / Title | Email Address | Password |
-| :--- | :--- | :--- | :--- |
-| **Administrator** | Dr. Evelyn Vance (Dean of Academic Affairs) | `admin@university.edu`[cite: 11] | `admin123Password!`[cite: 11] |
-| **Faculty** | Prof. Marcus Sterling (Instructor & Advisor) | `faculty@university.edu`[cite: 11] | `faculty123Password!`[cite: 11] |
-| **Analyst** | Dr. Elena Rostova (Data Science Workstation) | `analyst@university.edu`[cite: 11] | `analyst123Password!`[cite: 11] |
-| **Student** | Hassam Khan (Primary Demo Student) | `hassamkhan33344@gmail.com`[cite: 11] | `student123Password!`[cite: 11] |
-
-*(Note: All bulk-imported cohort students and demo users utilize `student123Password!` as their default password[cite: 11].)*
-
----
-
-## 🛡️ Configuration & Security
-
-* Use `.env.example` configuration files as templates for local environment setups.
-* Ensure real `.env` files, database connection strings, API keys, and credentials are kept out of Git version control.
-* Demo accounts and default credentials are intended strictly for local development and institutional demonstration purposes. Configure proper access controls and unique keys before production deployment.
-
----
-
-## 📄 License & Team Information
-
-* **Batch Name:** PMTZ-202310F[cite: 1]
-* **Faculty Supervisor:** Sir Riaz Ahmed[cite: 1]
-* **Development Team:** Developed collaboratively by the EduPredict project cohort (including Lead Architect Muhammad Rafay, ML Engineer Shayan Ahmed Chohan, Backend Developer Abdul Kabeer, Full Stack Integrator Hassam Ud Din Khan, and team members Shehryar Affandi, Abdulhai Siddiqui, Owais Solangi, and Muhammad Sajid)[cite: 1].
-* **License:** No license is currently specified. Please contact the project maintainers prior to reusing or redistributing this code[cite: 9].
-
 ```
+
+### Manual start
+
+Install and start the backend in one terminal:
+
+```bash
+cd backend
+python -m venv venv
+```
+
+Activate the environment, then install requirements and start the API:
+
+```bash
+# Windows PowerShell
+.\venv\Scripts\Activate.ps1
+
+# macOS or Linux
+source venv/bin/activate
+
+pip install -r requirements.txt
+python app.py
+```
+
+In a second terminal, from the project root, install frontend dependencies once after cloning, then start the frontend:
+
+```bash
+npm install
+npm run dev
+```
+
+The one-click startup scripts already run `npm install`, so you do not need to install frontend dependencies separately when using them. If you prefer a clean install that follows `package-lock.json`, you can use `npm ci` instead of `npm install` for the manual setup.
+
+By default, the frontend is available at `http://localhost:3000` and the Flask API at `http://127.0.0.1:5000`. The health endpoint is `http://127.0.0.1:5000/api/v1/health`.
+
+## Configuration
+
+Example environment templates are provided at the project root and in `backend/`:
+
+- Copy `.env.example` to `.env` if your local setup needs those frontend environment values.
+- Copy `backend/.env.example` to `backend/.env` and set values appropriate for your local MongoDB and Flask configuration.
+- Use a unique random `FLASK_SECRET_KEY` for any deployment beyond local demonstration.
+- Never commit real API keys, passwords, database credentials, or `.env` files.
+
+The application can use mock/fallback behavior if MongoDB is not running. Database persistence, authentication, and seeded account behavior depend on how the backend is configured and started.
+
+## API overview
+
+The Flask service exposes versioned endpoints under `/api/v1`. The implemented routes include:
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/v1/health` | Backend and database health information |
+| `POST` | `/api/v1/auth/register` | Register a student account |
+| `POST` | `/api/v1/auth/login` | Authenticate with email or student ID |
+| `GET` | `/api/v1/auth/me` | Retrieve the authenticated user's profile |
+| `GET`, `POST` | `/api/v1/alerts` | Retrieve and create alerts |
+| `GET`, `POST` | `/api/v1/feedback` | Retrieve and submit feedback tickets |
+| `POST` | `/api/v1/predict` | Request a student risk prediction |
+| `POST` | `/api/v1/interventions` | Record an intervention |
+| `POST` | `/api/upload/csv` | Submit a CSV upload |
+
+The backend source in `backend/app.py` is the authoritative reference for request fields, authentication requirements, and response formats.
+
+## Data and privacy
+
+The repository contains sample and demo cohort records and demo login credentials documented in `SETUP_GUIDE.md`. Do not treat these as real institutional accounts. Before publishing screenshots or test data, review them for student-identifying or otherwise private information. Do not upload real student records or secrets to a public repository.
+
+## Known limitations
+
+- EduPredict is a prototype; predictive outputs have not been independently validated for institutional decisions.
+- Big-data screens and scripts demonstrate workflows, but a production Hadoop/Spark/Impala deployment requires separately configured infrastructure.
+- The local mock mode and browser-based demo flows are intended for development and demonstration, not as production security controls.
+- No automated test suite is documented in this repository; review and validate the environment-specific workflows before relying on them.
+
+## License
+
+No license is currently included. Without a license, reuse and redistribution are not explicitly granted. Add a license file if you want to specify permissions for others.
+
+## Academic project
+
+EduPredict was developed as part of the PMTZ-202310F academic project cohort. The complete project report is available in `PROJECT_REPORT.md`.
