@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: EduPredict Flask Backend",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/app.py",
+      "cwd": "${workspaceFolder}/backend",
+      "env": {
+        "FLASK_ENV": "development",
+        "PORT": "5000",
+        "MONGO_URI": "mongodb://127.0.0.1:27017/edupredict_db"
+      },
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: Seed Local MongoDB",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/db_seed.py",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: Train ML Dropout Model",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/machine_learning/train_dropout_model.py",
+      "cwd": "${workspaceFolder}/machine_learning",
+      "console": "integratedTerminal"
+    }
+  ]
+}

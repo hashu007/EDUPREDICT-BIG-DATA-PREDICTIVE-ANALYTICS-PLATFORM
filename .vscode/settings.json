@@ -1,0 +1,10 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/backend/venv/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/backend",
+    "${workspaceFolder}/machine_learning",
+    "${workspaceFolder}/big_data_pipeline"
+  ],
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true
+}

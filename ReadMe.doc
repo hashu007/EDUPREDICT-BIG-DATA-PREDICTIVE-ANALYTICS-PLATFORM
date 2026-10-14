@@ -1,0 +1,71 @@
+================================================================================
+                        APTECH ePROJECT SUBMISSION - README
+================================================================================
+Project Title : EduPredict - Big Data & Predictive Analytics Platform
+Architecture  : React 19 + TypeScript (Frontend) | Python Flask + MongoDB (Backend)
+Big Data Stack: Hadoop HDFS, PySpark / MapReduce, Apache Impala SQL, RStudio, Jupyter
+Database      : MongoDB (Database: edupredict_db)
+================================================================================
+
+1. PROJECT OVERVIEW
+-------------------
+EduPredict is a comprehensive Big Data and Machine Learning educational analytics
+platform designed to improve student retention, optimize academic resource
+allocation, and personalize learning interventions.
+
+2. ASSUMPTIONS MADE IN THIS PROJECT
+-----------------------------------
+1. Hybrid Local Execution & Resilience:
+   - The application connects directly to a local MongoDB instance at
+     `mongodb://127.0.0.1:27017/edupredict_db` via the Python Flask REST API
+     (`backend/app.py` on port 5000).
+   - If the local MongoDB daemon or Hadoop cluster nodes are offline during a
+     classroom demonstration, the system includes an automatic resilient
+     simulation mode so all dashboards, SQL queries, and ML predictions remain
+     100% interactive without crashing.
+
+2. Role-Based Access Control (RBAC):
+   - Four distinct institutional roles are implemented and enforced:
+     * Administrator (Dean / Academic Affairs)
+     * Faculty / Teacher (Course Instructors & Advisors)
+     * Student (Personal Academic Pathway & Safe Absences Calculator)
+     * Big Data & ML Analyst (HDFS, MapReduce/Spark, Impala SQL, ML Simulator)
+
+3. CSV Data Ingestion & Auto-ID Generation:
+   - Uploaded CSV datasets (`StudentID,Name,Email,Department,Semester,AttendanceRate,CurrentGPA,MidtermsAvg,LMSWeeklyHours`)
+     are validated in real time.
+   - If `StudentID` is left blank in Excel, the system automatically assigns a
+     new unique Student ID (`STU-2026-XXXX`), calculates the student's ML dropout
+     risk and K-Means cluster, and syncs the records to MongoDB (`edupredict_db`).
+
+4. Big Data & Data Science Deliverables Included in Repository:
+   - `/backend/`            : Python Flask REST API (`app.py`), MongoDB ODM schemas (`mongodb_models.py`), and database seeder (`db_seed.py`).
+   - `/big_data_pipeline/`  : Hadoop HDFS ingestion bash script (`hdfs_ingest.sh`), PySpark ETL job (`pyspark_etl_job.py`), and Apache Impala DDL/queries (`impala_ddl_and_queries.sql`).
+   - `/machine_learning/`   : Jupyter Anaconda Notebook (`EduPredict_ML_and_EDA.ipynb`), Scikit-Learn training pipeline (`train_dropout_model.py`), Anomaly Detector (`anomaly_detector.py`), and RStudio statistical script (`r_statistical_analysis.R`).
+   - `/database/`           : MongoDB shell seed script (`mongodb_seed.js`), Tableau dataset (`edupredict_tableau_dataset.csv`), and sample CSV upload batch (`new_students_batch_2026.csv`).
+
+3. HOW TO RUN THE PROJECT (WINDOWS)
+-----------------------------------
+Option A (One-Click):
+  Double-click `run_local.bat` in the project root folder.
+
+Option B (Manual via VS Code Terminal):
+  Terminal 1 (Python Backend - Port 5000):
+    cd backend
+    python -m venv venv
+    .\venv\Scripts\activate
+    pip install -r requirements.txt
+    python db_seed.py
+    python app.py
+
+  Terminal 2 (React Frontend - Port 3000):
+    npm install
+    npm run dev
+
+4. DEFAULT LOGIN CREDENTIALS
+----------------------------
+- Admin   : admin@university.edu         | Password: admin123Password!
+- Faculty : faculty@university.edu       | Password: faculty123Password!
+- Analyst : analyst@university.edu       | Password: analyst123Password!
+- Student : hassamkhan33344@gmail.com    | Password: student123Password!
+================================================================================

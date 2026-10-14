@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .font-serif-academic {
+    font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', Times, serif;
+  }
+
+  .font-display-academic {
+    font-family: 'Cinzel', Georgia, serif;
+    letter-spacing: 0.04em;
+  }
+  
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* ==============================================================================
+   LIGHT THEME: Oxford Academic Ivory & Crisp Editorial Slate
+   ============================================================================== */
+.theme-academic {
+  background-color: #f4f6f9;
+  color: #0f172a;
+}
+
+.theme-academic .bg-white {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.theme-academic .text-slate-900 {
+  color: #0f172a;
+}
+
+.theme-academic .text-slate-800 {
+  color: #1e293b;
+}
+
+.theme-academic .text-slate-700 {
+  color: #334155;
+}
+
+.theme-academic .border-slate-200 {
+  border-color: #e2e8f0;
+}
+
+/* ==============================================================================
+   DARK THEME: Hadoop Industrial Cluster Obsidian & Deep Amber
+   ============================================================================== */
+.theme-hadoop {
+  background-color: #070c16;
+  color: #f1f5f9;
+}
+
+/* Surface adaptations in Dark Theme */
+.theme-hadoop .bg-white {
+  background-color: #0d1526 !important;
+  color: #f1f5f9 !important;
+}
+
+.theme-hadoop .bg-slate-50 {
+  background-color: #090f1d !important;
+}
+
+.theme-hadoop .bg-slate-100 {
+  background-color: #131e36 !important;
+}
+
+.theme-hadoop .bg-slate-200 {
+  background-color: #1d2b4a !important;
+}
+
+.theme-hadoop .bg-amber-50 {
+  background-color: rgba(69, 26, 3, 0.4) !important;
+}
+
+.theme-hadoop .bg-red-50 {
+  background-color: rgba(69, 10, 10, 0.4) !important;
+}
+
+.theme-hadoop .bg-blue-50 {
+  background-color: rgba(23, 37, 84, 0.4) !important;
+}
+
+.theme-hadoop .bg-emerald-50 {
+  background-color: rgba(2, 44, 34, 0.4) !important;
+}
+
+/* Border adaptations in Dark Theme */
+.theme-hadoop .border-slate-100,
+.theme-hadoop .border-slate-200 {
+  border-color: #1e293b !important;
+}
+
+.theme-hadoop .border-slate-300 {
+  border-color: #2b3952 !important;
+}
+
+.theme-hadoop .border-amber-200,
+.theme-hadoop .border-amber-300 {
+  border-color: #78350f !important;
+}
+
+.theme-hadoop .border-red-200 {
+  border-color: #7f1d1d !important;
+}
+
+/* Typography adaptations in Dark Theme */
+.theme-hadoop .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+.theme-hadoop .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+.theme-hadoop .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+.theme-hadoop .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.theme-hadoop .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+.theme-hadoop .text-amber-800,
+.theme-hadoop .text-amber-900,
+.theme-hadoop .text-amber-950 {
+  color: #fcd34d !important;
+}
+
+.theme-hadoop .text-red-700,
+.theme-hadoop .text-red-800 {
+  color: #fca5a5 !important;
+}
+
+.theme-hadoop .text-blue-800 {
+  color: #93c5fd !important;
+}
+
+.theme-hadoop .text-emerald-700,
+.theme-hadoop .text-emerald-800 {
+  color: #6ee7b7 !important;
+}
+
+/* Form inputs in Dark Theme */
+.theme-hadoop input:not([type="checkbox"]),
+.theme-hadoop select,
+.theme-hadoop textarea {
+  background-color: #070c18 !important;
+  border-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+.theme-hadoop input::placeholder,
+.theme-hadoop textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.theme-academic ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.theme-academic ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+.theme-academic ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.theme-hadoop ::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+.theme-hadoop ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+.theme-hadoop ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Print Styles for Project Report Submission */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .printable-card {
+    border: 1px solid #d1d5db !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    page-break-inside: avoid;
+  }
+}

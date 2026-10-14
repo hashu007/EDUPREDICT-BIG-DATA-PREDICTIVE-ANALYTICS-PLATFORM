@@ -1,0 +1,26 @@
+StudentID,Name,Email,Department,Semester,AttendanceRate,CurrentGPA,MidtermsAvg,LMSWeeklyHours
+STU-2026-2001,Zainab Al-Mansoor,zainab.almansoor@university.edu,Artificial Intelligence,5,96.5,3.92,94,15.2
+STU-2026-2002,Bilal Ahmed Khan,bilal.khan@university.edu,Computer Science,6,61.0,2.05,54,3.1
+STU-2026-2003,Ayesha Siddiqui,ayesha.siddiqui@university.edu,Data Science,4,91.2,3.68,88,12.4
+STU-2026-2004,Usman Tariq,usman.tariq@university.edu,Software Engineering,7,54.5,1.82,47,2.0
+STU-2026-2005,Fatima Noor,fatima.noor@university.edu,Cybersecurity,3,88.0,3.45,83,10.8
+STU-2026-2006,Hamza Raza,hamza.raza@university.edu,Computer Science,5,74.0,2.65,69,6.5
+STU-2026-2007,Sana Mir,sana.mir@university.edu,Data Science,6,94.8,3.85,91,14.0
+STU-2026-2008,Omar Farooq,omar.farooq@university.edu,Information Systems,4,48.0,1.65,42,1.5
+STU-2026-2009,Hira Mani,hira.mani@university.edu,Software Engineering,2,84.5,3.18,79,9.2
+STU-2026-2010,Saad Qureshi,saad.qureshi@university.edu,Artificial Intelligence,8,92.0,3.74,89,13.5
+STU-2026-2011,Mariam Hassan,mariam.hassan@university.edu,Computer Science,3,67.5,2.30,61,4.8
+STU-2026-2012,Daniyal Sheikh,daniyal.sheikh@university.edu,Cybersecurity,5,89.5,3.52,85,11.6
+STU-2026-2013,Nadia Jamil,nadia.jamil@university.edu,Data Science,7,58.2,1.94,51,2.8
+STU-2026-2014,Faisal Rehman,faisal.rehman@university.edu,Software Engineering,4,79.0,2.88,74,7.9
+STU-2026-2015,Amna Ilyas,amna.ilyas@university.edu,Computer Science,6,97.0,3.96,95,16.4
+STU-2026-2016,Taimoor Baig,taimoor.baig@university.edu,Information Systems,5,63.4,2.15,58,3.9
+STU-2026-2017,Mahira Shah,mahira.shah@university.edu,Artificial Intelligence,3,90.0,3.60,86,12.1
+STU-2026-2018,Haris Sohail,haris.sohail@university.edu,Cybersecurity,6,71.5,2.48,65,5.4
+STU-2026-2019,Zoya Nasir,zoya.nasir@university.edu,Data Science,2,86.0,3.32,81,10.0
+STU-2026-2020,Kamran Akmal,kamran.akmal@university.edu,Computer Science,8,52.0,1.75,45,1.8
+STU-2026-2021,Mehwish Hayat,mehwish.hayat@university.edu,Software Engineering,5,93.5,3.79,90,13.8
+STU-2026-2022,Arslan Ash,arslan.ash@university.edu,Computer Science,4,82.0,3.05,77,8.7
+STU-2026-2023,Iqra Aziz,iqra.aziz@university.edu,Artificial Intelligence,7,95.2,3.89,93,14.9
+STU-2026-2024,Shahid Afridi,shahid.afridi@university.edu,Information Systems,6,59.0,1.98,52,2.5
+STU-2026-2025,Kinza Hashmi,kinza.hashmi@university.edu,Cybersecurity,4,87.5,3.40,82,10.5
